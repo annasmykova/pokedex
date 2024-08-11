@@ -30,3 +30,5 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.
+/server/dist/
+/server/node_modules/
