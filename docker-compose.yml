@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ../backend
+    command: npm run start:dev
+    volumes:
+      - ./backend:/usr/src/app
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+
+  frontend:
+    build: ../frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - backend
