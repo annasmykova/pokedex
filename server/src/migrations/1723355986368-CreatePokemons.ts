@@ -4,7 +4,7 @@ import {Pokemon} from "../entities/Pokemon";
 export class CreatePokemons1723355986368 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        const res = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=1400')
+        const res = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=100')
         let acc = 0
         const data = await res.json()
         for (const resItem of data.results) {
