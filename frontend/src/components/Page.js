@@ -5,7 +5,7 @@ const Page = ({children}) => {
     return (<>
             <Header/>
             <main>
-                <Container maxWidth="sm">
+                <Container maxWidth="xl">
                     {children}
                 </Container>
             </main>

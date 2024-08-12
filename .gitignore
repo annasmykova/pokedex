@@ -31,4 +31,4 @@ lerna-debug.log*
 *.sln
 *.
 /server/dist/
-/server/node_modules/
+/server/node_modules/*

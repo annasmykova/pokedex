@@ -1,4 +1,3 @@
-
 import {
     createBrowserRouter,
     RouterProvider,
@@ -9,28 +8,31 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import './App.css'
+import PokemonPage from "./containers/PokemonPage";
+import {CollectionProvider} from "./contexts/CollectionContext";
+import Collection from "./containers/Collection";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Home />,
-        children: [
-            {
-                path: "saved",
-                element: <Home />,
-            },
-            {
-                path: "pokemon/:id",
-                element: <Home />,
-            },
-        ],
+    },
+    {
+        path: "/collection",
+        element: <Collection />,
+    },
+    {
+        path: "/pokemons/:id",
+        element: <PokemonPage />,
     },
 ]);
 
 function App() {
   return (
-      <RouterProvider router={router} />
+      <CollectionProvider>
+        <RouterProvider router={router} />
+      </CollectionProvider>
   );
 }
 

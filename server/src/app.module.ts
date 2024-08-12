@@ -1,21 +1,20 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import {Pokemon} from "./entities/Pokemon";
+import {TypeOrmModule, TypeOrmModuleOptions} from '@nestjs/typeorm';
+import {DataSource} from "typeorm";
+import {CollectionModule} from "./collection/collection.module";
+import {AppDataSource} from "./data-source";
 import { PokemonsModule } from './pokemons/pokemons.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.POSTGRES_HOST || 'localhost',
-      port: 5432,
-      username: process.env.POSTGRES_USER || 'myuser',
-      password: process.env.POSTGRES_PASSWORD || 'mypassword',
-      database: process.env.POSTGRES_DB || 'mydb',
-      entities: [Pokemon],
-      synchronize: true,
-    }),
+      ...AppDataSource.options,
+      autoLoadEntities: true,
+    } as TypeOrmModuleOptions),
     PokemonsModule,
+    CollectionModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dataSource: DataSource) {}
+}

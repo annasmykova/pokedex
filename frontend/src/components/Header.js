@@ -12,7 +12,7 @@ const Header = () => {
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Link to={'/'}><Typography sx={{ minWidth: 100 }}>Home</Typography></Link>
-                        <Link to={'/saved-list'}><Typography sx={{ minWidth: 100 }}>My Collection</Typography></Link>
+                        <Link to={'/collection'}><Typography sx={{ minWidth: 100 }}>My Collection</Typography></Link>
                     </Box>
                 </Box>
             </header>

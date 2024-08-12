@@ -12,9 +12,6 @@ export class CreatePokemons1723355986368 implements MigrationInterface {
             const pokemon = await item.json()
             if (!acc) {
                 acc++
-                console.log(pokemon.name);
-                console.log(pokemon.types[0].type);
-                console.log(pokemon.sprites.front_default);
             }
             await queryRunner.manager.getRepository(Pokemon).save({
                 name: pokemon.name,
